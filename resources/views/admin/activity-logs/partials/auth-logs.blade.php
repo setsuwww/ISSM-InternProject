@@ -15,17 +15,17 @@
                         <div class="flex-1">
                             <div class="flex items-center space-x-2 mb-2">
                                 <span class="px-2 py-1 text-xs font-medium rounded-full
-                                    {{ $log->action == 'login' && $log->status == 'success' ? 'bg-green-100 text-green-800' : '' }}
-                                    {{ $log->action == 'logout' ? 'bg-blue-100 text-blue-800' : '' }}
-                                    {{ $log->action == 'failed_login' ? 'bg-red-100 text-red-800' : '' }}
-                                    {{ $log->action == 'password_reset' ? 'bg-yellow-100 text-yellow-800' : '' }}">
+                                            {{ $log->action == 'login' && $log->status == 'success' ? 'bg-green-100 text-green-800' : '' }}
+                                            {{ $log->action == 'logout' ? 'bg-blue-100 text-blue-800' : '' }}
+                                            {{ $log->action == 'failed_login' ? 'bg-red-100 text-red-800' : '' }}
+                                            {{ $log->action == 'password_reset' ? 'bg-yellow-100 text-yellow-800' : '' }}">
                                     {{ str_replace('_', ' ', ucfirst($log->action)) }}
                                 </span>
 
                                 <span class="px-2 py-1 text-xs font-medium rounded-full
-                                    {{ $log->status == 'success' ? 'bg-green-100 text-green-800' : '' }}
-                                    {{ $log->status == 'failed' ? 'bg-red-100 text-red-800' : '' }}
-                                    {{ $log->status == 'blocked' ? 'bg-yellow-100 text-yellow-800' : '' }}">
+                                            {{ $log->status == 'success' ? 'bg-green-100 text-green-800' : '' }}
+                                            {{ $log->status == 'failed' ? 'bg-red-100 text-red-800' : '' }}
+                                            {{ $log->status == 'blocked' ? 'bg-yellow-100 text-yellow-800' : '' }}">
                                     {{ ucfirst($log->status) }}
                                 </span>
 
@@ -66,7 +66,7 @@
 
                         <div class="ml-4">
                             <button onclick="toggleDetails('auth-{{ $log->id }}')"
-                                    class="text-red-600 hover:text-red-800 text-sm font-medium">
+                                class="text-red-600 hover:text-red-800 text-sm font-medium">
                                 <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i>
                                 Details
                             </button>
@@ -85,7 +85,7 @@
                                         <div><strong>Email:</strong> {{ $log->email }}</div>
                                     @endif
                                     @if($log->user)
-                                        <div><strong>User:</strong> {{ $log->user->name }} ({{ $log->user->role }})</div>
+                                        <div><strong>User:</strong> {{ $log->user->name }} ({{ $log->user->akses_role }})</div>
                                     @endif
                                 </div>
                             </div>

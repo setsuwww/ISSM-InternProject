@@ -4,10 +4,10 @@ namespace App\Exports;
 
 use App\Models\User;
 
-class UsersExport 
+class UsersExport
 {
     public function collection()
     {
-        return User::select('name', 'email', 'role', 'created_at')->get();
+        return User::select('name', 'email', 'akses_role', 'created_at')->get();
     }
 }

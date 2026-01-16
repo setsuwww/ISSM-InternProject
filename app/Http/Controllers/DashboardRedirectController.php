@@ -17,21 +17,21 @@ class DashboardRedirectController extends Controller
         }
 
         $user = Auth::user();
-        
+
         // Log dashboard access
         \App\Models\AuthActivityLog::log(
             'dashboard_access',
             'success',
             $user->email,
             $user->id,
-            "Accessing dashboard as {$user->role}"
+            "Accessing dashboard as {$user->akses_role}"
         );
 
-        return match ($user->role) {
-            'Admin'    => redirect()->route('admin.dashboard'),
+        return match ($user->akses_role) {
+            'Admin' => redirect()->route('admin.dashboard'),
             'Operator' => redirect()->route('operator.dashboard'),
-            'User'     => redirect()->route('user.dashboard'),
-            default    => redirect()->route('login')->withErrors(['role' => 'Role tidak valid']),
+            'User' => redirect()->route('user.dashboard'),
+            default => redirect()->route('login')->withErrors(['akses_role' => 'Role tidak valid']),
         };
     }
 
@@ -45,7 +45,7 @@ class DashboardRedirectController extends Controller
         }
 
         $user = Auth::user();
-        
+
         // Check if user has required role or higher privileges
         $roleHierarchy = [
             'User' => 1,
@@ -53,7 +53,7 @@ class DashboardRedirectController extends Controller
             'Admin' => 3,
         ];
 
-        $userLevel = $roleHierarchy[$user->role] ?? 0;
+        $userLevel = $roleHierarchy[$user->akses_role] ?? 0;
         $requiredLevel = $roleHierarchy[$requiredRole] ?? 999;
 
         if ($userLevel < $requiredLevel) {
@@ -63,10 +63,10 @@ class DashboardRedirectController extends Controller
                 'warning',
                 $user->email,
                 $user->id,
-                "Attempted to access {$requiredRole} area with {$user->role} role"
+                "Attempted to access {$requiredRole} area with {$user->akses_role} role"
             );
 
-            return redirect()->route($this->getDashboardRoute($user->role))
+            return redirect()->route($this->getDashboardRoute($user->akses_role))
                 ->with('error', 'Anda tidak memiliki akses ke halaman tersebut.');
         }
 
@@ -79,10 +79,10 @@ class DashboardRedirectController extends Controller
     private function getDashboardRoute(string $role): string
     {
         return match ($role) {
-            'Admin'    => 'admin.dashboard',
-            'Operator' => 'operator.dashboard', 
-            'User'     => 'user.dashboard',
-            default    => 'login',
+            'Admin' => 'admin.dashboard',
+            'Operator' => 'operator.dashboard',
+            'User' => 'user.dashboard',
+            default => 'login',
         };
     }
 }

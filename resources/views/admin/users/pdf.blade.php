@@ -46,7 +46,7 @@
                     <td>{{ $user->nik }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->role }}</td>
+                    <td>{{ $user->akses_role }}</td>
                     <td>
                         {{ $user->shifts->pluck('name')->implode(', ') }}
                     </td>

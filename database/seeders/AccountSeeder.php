@@ -16,7 +16,7 @@ class AccountSeeder extends Seeder
             'nik' => '000000000001',
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
-            'role' => 'Admin',
+            'akses_role' => 'Admin',
         ]);
 
         User::create([
@@ -24,7 +24,7 @@ class AccountSeeder extends Seeder
             'nik' => '000000000002',
             'email' => 'operator@example.com',
             'password' => Hash::make('password'),
-            'role' => 'Operator',
+            'akses_role' => 'Operator',
         ]);
 
         User::create([
@@ -32,14 +32,14 @@ class AccountSeeder extends Seeder
             'nik' => '000000000003',
             'email' => 'murmur@example.com',
             'password' => Hash::make('password'),
-            'role' => 'User',
+            'akses_role' => 'User',
         ]);
         User::create([
             'name' => 'Dirman',
             'nik' => '000000000004',
             'email' => 'dir@example.com',
             'password' => Hash::make('password'),
-            'role' => 'User',
+            'akses_role' => 'User',
         ]);
     }
 }

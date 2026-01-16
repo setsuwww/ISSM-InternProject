@@ -27,15 +27,15 @@ class UserController extends Controller
         }
 
         // Filter role
-        if ($request->filled('role')) {
-            $query->where('role', $request->role);
+        if ($request->filled('akses_role')) {
+            $query->where('akses_role', $request->akses_role);
         }
 
         $users = $query->latest()->paginate(10)->withQueryString();
 
-        $countAdmin = User::where('role', 'admin')->count();
-        $countOperator = User::where('role', 'operator')->count();
-        $countUser = User::where('role', 'user')->count();
+        $countAdmin = User::where('akses_role', 'admin')->count();
+        $countOperator = User::where('akses_role', 'operator')->count();
+        $countUser = User::where('akses_role', 'user')->count();
 
         return view('admin.users.index', compact('users', 'countAdmin', 'countOperator', 'countUser'));
 
@@ -56,9 +56,9 @@ class UserController extends Controller
     {
         $query = User::with('shifts');
 
-        $role = strtolower($request->get('role', 'all'));
+        $role = strtolower($request->get('akses_role', 'all'));
         if ($role !== 'all' && in_array($role, ['admin', 'operator', 'user'])) {
-            $query->where('role', $role);
+            $query->where('akses_role', $role);
         }
 
         $shift = strtolower($request->get('shift', 'all'));
@@ -96,7 +96,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
-            'role' => 'required|in:admin,operator,user'
+            'akses_role' => 'required|in:admin,operator,user'
         ]);
 
         $data['password'] = Hash::make($data['password']);
@@ -108,13 +108,13 @@ class UserController extends Controller
             $user->id,
             $user->name,
             $user->email,
-            $user->role,
+            $user->akses_role,
             null,
             [
                 'nik' => $user->nik,
                 'name' => $user->name,
                 'email' => $user->email,
-                'role' => $user->role
+                'akses_role' => $user->akses_role
             ],
             false,
             "Membuat user baru: {$user->name} ({$user->nik})"
@@ -137,26 +137,26 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:8',
-            'role' => 'required|in:admin,operator,user',
+            'akses_role' => 'required|in:admin,operator,user',
         ]);
 
         $oldValues = [
             'nik' => $user->nik,
             'name' => $user->name,
             'email' => $user->email,
-            'role' => $user->role,
+            'akses_role' => $user->akses_role,
         ];
 
         $user->nik = $data['nik'];
         $user->name = $data['name'];
         $user->email = $data['email'];
-        $user->role = $data['role'];
+        $user->akses_role = $data['akses_role'];
 
         $newValues = [
             'nik' => $user->nik,
             'name' => $user->name,
             'email' => $user->email,
-            'role' => $user->role,
+            'akses_role' => $user->akses_role,
         ];
 
         if (!empty($data['password'])) {
@@ -171,7 +171,7 @@ class UserController extends Controller
             $user->id,
             $user->name,
             $user->email,
-            $user->role,
+            $user->akses_role,
             $oldValues,
             $newValues,
             isset($newValues['password_changed']),
@@ -189,7 +189,7 @@ class UserController extends Controller
         $userData = [
             'name' => $user->name,
             'email' => $user->email,
-            'role' => $user->role
+            'akses_role' => $user->akses_role
         ];
 
         $user->delete();
@@ -200,7 +200,7 @@ class UserController extends Controller
             null,
             $userName,
             $userData['email'],
-            $userData['role'],
+            $userData['akses_role'],
             $userData,
             null,
             false,

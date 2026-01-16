@@ -23,7 +23,7 @@
                                 <div class="flex items-center space-x-3 mb-2">
                                     <span class="text-sm font-medium text-gray-900">{{ $session->user->name }}</span>
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                        {{ ucfirst($session->user->role) }}
+                                        {{ ucfirst($session->user->akses_role) }}
                                     </span>
                                     @if($session->is_trusted_device)
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">

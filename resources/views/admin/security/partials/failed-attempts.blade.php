@@ -26,7 +26,7 @@
                                     <span class="text-sm font-medium text-gray-900">{{ $attempt->email }}</span>
                                     @if($attempt->user)
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                            {{ ucfirst($attempt->user->role) }}
+                                            {{ ucfirst($attempt->user->akses_role) }}
                                         </span>
                                     @else
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">

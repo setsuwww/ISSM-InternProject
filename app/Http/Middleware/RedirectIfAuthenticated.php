@@ -22,13 +22,13 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 $user = Auth::user();
-                
+
                 // Redirect ke dashboard sesuai role
-                return match ($user->role) {
-                    'Admin'    => redirect()->route('admin.dashboard'),
+                return match ($user->akses_role) {
+                    'Admin' => redirect()->route('admin.dashboard'),
                     'Operator' => redirect()->route('operator.dashboard'),
-                    'User'     => redirect()->route('user.dashboard'),
-                    default    => redirect('/login')->withErrors(['role' => 'Role tidak valid']),
+                    'User' => redirect()->route('user.dashboard'),
+                    default => redirect('/login')->withErrors(['akses_role' => 'Role tidak valid']),
                 };
             }
         }

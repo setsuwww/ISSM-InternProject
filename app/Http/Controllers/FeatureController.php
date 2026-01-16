@@ -41,7 +41,7 @@ class FeatureController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
-            'role' => 'required|in:Admin,Operator,User',
+            'akses_role' => 'required|in:Admin,Operator,User',
         ]);
 
         $data['password'] = bcrypt($data['password']);
@@ -63,7 +63,7 @@ class FeatureController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:8',
-            'role' => 'required|in:Admin,Operator,User',
+            'akses_role' => 'required|in:Admin,Operator,User',
         ]);
 
         if (empty($data['password'])) {

@@ -24,7 +24,7 @@
                                     @if($activity->user)
                                         <span class="text-sm font-medium text-gray-900">{{ $activity->user->name }}</span>
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                            {{ ucfirst($activity->user->role) }}
+                                            {{ ucfirst($activity->user->akses_role) }}
                                         </span>
                                     @elseif($activity->email)
                                         <span class="text-sm font-medium text-gray-900">{{ $activity->email }}</span>
@@ -105,7 +105,7 @@
                                             <div><strong>Email:</strong> {{ $activity->email }}</div>
                                         @endif
                                         @if($activity->user)
-                                            <div><strong>User:</strong> {{ $activity->user->name }} ({{ $activity->user->role }})</div>
+                                            <div><strong>User:</strong> {{ $activity->user->name }} ({{ $activity->user->akses_role }})</div>
                                         @endif
                                         @if($activity->ip_address)
                                             <div><strong>IP Address:</strong> {{ $activity->ip_address }}</div>

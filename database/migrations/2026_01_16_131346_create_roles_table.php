@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('role');
+            $table->string('akses_role');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

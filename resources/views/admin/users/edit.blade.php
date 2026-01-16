@@ -49,8 +49,8 @@
                                     class="text-red-500 ml-1">*</span></label>
                             <input type="text" name="nik" id="nik" value="{{ old('nik', $user->nik) }}" inputmode="numeric"
                                 pattern="[0-9]{8,12}" minlength="8" maxlength="12" class=" block w-full pl-4 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-4
-                                        focus:ring-sky-100 focus:border-sky-500 transition-all duration-200 bg-gray-50
-                                        focus:bg-white text-gray-900 placeholder-gray-500"
+                                                    focus:ring-sky-100 focus:border-sky-500 transition-all duration-200 bg-gray-50
+                                                    focus:bg-white text-gray-900 placeholder-gray-500"
                                 placeholder="Masukkan nama lengkap pengguna" required autocomplete="nik">
                         </div>
 
@@ -94,14 +94,14 @@
 
                         <!-- Role -->
                         <div class="space-y-3">
-                            <label for="role" class="block text-sm font-bold text-gray-800">
+                            <label for='akses_role' class="block text-sm font-bold text-gray-800">
                                 Role Pengguna <span class="text-red-500 ml-1">*</span>
                             </label>
-                            <select name="role" id="role" class="block w-full pl-4 pr-10 py-4 border-2 border-gray-200 rounded-xl 
-                               focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all 
-                               duration-200 bg-gray-50 focus:bg-white text-gray-900 cursor-pointer" required>
+                            <select name='akses_role' id='akses_role' class="block w-full pl-4 pr-10 py-4 border-2 border-gray-200 rounded-xl 
+                                           focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all 
+                                           duration-200 bg-gray-50 focus:bg-white text-gray-900 cursor-pointer" required>
                                 @php
-                                    $currentRole = strtolower(old('role', $user->role));
+                                    $currentRole = strtolower(old('akses_role', $user->akses_role));
                                 @endphp
 
                                 <option value="admin" {{ $currentRole === 'admin' ? 'selected' : '' }}>

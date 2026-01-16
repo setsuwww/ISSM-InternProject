@@ -7,14 +7,14 @@ use App\Models\User;
 Route::get('/test-logging', function () {
     try {
         // Get admin user
-        $admin = User::where('role', 'admin')->first();
+        $admin = User::where('akses_role', 'admin')->first();
         if (!$admin) {
             return response()->json(['error' => 'No admin user found']);
         }
-        
+
         // Login admin
         auth()->login($admin);
-        
+
         // Test logging
         AdminShiftsLog::log(
             'create',
@@ -25,15 +25,15 @@ Route::get('/test-logging', function () {
             ['test' => 'data'],
             'Testing from web route'
         );
-        
+
         $latestLog = AdminShiftsLog::latest()->first();
-        
+
         return response()->json([
             'success' => true,
             'message' => 'Logging test successful',
             'log' => $latestLog
         ]);
-        
+
     } catch (Exception $e) {
         return response()->json([
             'error' => $e->getMessage(),

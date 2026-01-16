@@ -160,7 +160,7 @@
 
                         <!-- Enhanced Role Field -->
                         <div class="space-y-3">
-                            <label for="role" class="block text-sm font-bold text-gray-800">
+                            <label for='akses_role' class="block text-sm font-bold text-gray-800">
                                 Role Pengguna
                                 <span class="text-red-500 ml-1">*</span>
                             </label>
@@ -173,7 +173,7 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <select id="role" name="role"
+                                <select id='akses_role' name='akses_role'
                                     class="block w-full pl-12 pr-10 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all duration-200 bg-gray-50 focus:bg-white text-gray-900 appearance-none cursor-pointer"
                                     required>
                                     <option value="" disabled selected>Pilih role pengguna</option>

@@ -25,16 +25,16 @@ class ScheduleReportExport implements FromArray, WithHeadings, WithTitle, WithSt
 
     public function __construct($month, $year)
     {
-        $this->month       = $month;
-        $this->year        = $year;
+        $this->month = $month;
+        $this->year = $year;
         $this->daysInMonth = Carbon::createFromDate($year, $month, 1)->daysInMonth;
         Carbon::setLocale('id');
 
         $this->users = User::whereHas('schedules', function ($q) {
-                $q->whereYear('schedule_date', $this->year)
-                  ->whereMonth('schedule_date', $this->month);
-            })
-            ->whereIn('role', ['user', 'operator'])
+            $q->whereYear('schedule_date', $this->year)
+                ->whereMonth('schedule_date', $this->month);
+        })
+            ->whereIn('akses_role', ['user', 'operator'])
             ->get();
     }
 
@@ -52,7 +52,7 @@ class ScheduleReportExport implements FromArray, WithHeadings, WithTitle, WithSt
 
         $data[] = [];
         $data[] = [
-            'NO'   => '',
+            'NO' => '',
             'NAMA' => 'TOTAL JAM KERJA SEMUA PEGAWAI',
             'REKAP' => $this->grandTotalHours . 'j'
         ];
@@ -72,8 +72,9 @@ class ScheduleReportExport implements FromArray, WithHeadings, WithTitle, WithSt
 
             if ($schedule && $schedule->shift) {
                 $start = Carbon::parse($schedule->shift->start_time);
-                $end   = Carbon::parse($schedule->shift->end_time);
-                if ($end->lt($start)) $end->addDay();
+                $end = Carbon::parse($schedule->shift->end_time);
+                if ($end->lt($start))
+                    $end->addDay();
 
                 $minutes = $start->diffInMinutes($end);
                 $totalMinutes += $minutes;
@@ -106,8 +107,8 @@ class ScheduleReportExport implements FromArray, WithHeadings, WithTitle, WithSt
         $header = array_merge(['NO', 'NAMA'], range(1, $this->daysInMonth), ['TOTAL JAM']);
         $headings[] = $header;
 
-        $mapHari = ['Monday'=>'Sen','Tuesday'=>'Sel','Wednesday'=>'Rab','Thursday'=>'Kam','Friday'=>'Jum','Saturday'=>'Sab','Sunday'=>'Min'];
-        $dayNames = array_merge(['',''], array_map(function($d) use ($mapHari) {
+        $mapHari = ['Monday' => 'Sen', 'Tuesday' => 'Sel', 'Wednesday' => 'Rab', 'Thursday' => 'Kam', 'Friday' => 'Jum', 'Saturday' => 'Sab', 'Sunday' => 'Min'];
+        $dayNames = array_merge(['', ''], array_map(function ($d) use ($mapHari) {
             return $mapHari[Carbon::createFromDate($this->year, $this->month, $d)->format('l')];
         }, range(1, $this->daysInMonth)), ['']);
         $headings[] = $dayNames;
@@ -122,10 +123,10 @@ class ScheduleReportExport implements FromArray, WithHeadings, WithTitle, WithSt
 
     public function styles(Worksheet $sheet)
     {
-        $highestCol     = $sheet->getHighestColumn();
-        $highestRow     = $sheet->getHighestRow();
-        $colCount       = Coordinate::columnIndexFromString($highestCol);
-        $dataStartRow   = 6;
+        $highestCol = $sheet->getHighestColumn();
+        $highestRow = $sheet->getHighestRow();
+        $colCount = Coordinate::columnIndexFromString($highestCol);
+        $dataStartRow = 6;
 
         $this->styleHeaderLaporan($sheet, $highestCol);
         $this->styleHeaderTabel($sheet, $highestCol);
