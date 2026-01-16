@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('fungsis', function (Blueprint $table) {
             $table->id();
             $table->string('fungsi');
-            $table->string('is_active')->unique();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

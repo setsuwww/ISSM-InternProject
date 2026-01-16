@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Location;
+use App\Models\AttendanceLocation;
 use Illuminate\Http\Request;
 
-class LocationsController extends Controller
+class AttendanceLocationsController extends Controller
 {
     public function index()
     {
-        $locations = Location::all();
+        $locations = AttendanceLocation::all();
         return view('admin.locations.index', compact('locations'));
     }
 
@@ -28,17 +28,17 @@ class LocationsController extends Controller
             'radius' => 'required|integer|min:1',
         ]);
 
-        Location::create($request->all());
+        AttendanceLocation::create($request->all());
 
         return redirect()->route('admin.locations.index')->with('success', 'Lokasi berhasil ditambahkan.');
     }
 
-    public function edit(Location $location)
+    public function edit(AttendanceLocation $location)
     {
         return view('admin.locations.edit', compact('location'));
     }
 
-    public function update(Request $request, Location $location)
+    public function update(Request $request, AttendanceLocation $location)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -52,7 +52,7 @@ class LocationsController extends Controller
         return redirect()->route('admin.locations.index')->with('success', 'Lokasi berhasil diupdate.');
     }
 
-    public function destroy(Location $location)
+    public function destroy(AttendanceLocation $location)
     {
         $location->delete();
         return redirect()->route('admin.locations.index')->with('success', 'Lokasi berhasil dihapus.');

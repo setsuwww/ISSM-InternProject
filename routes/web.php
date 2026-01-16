@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Admin\LocationsController;
+use App\Http\Controllers\Admin\AttendanceLocationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ShiftController;
@@ -23,7 +23,7 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
 
         // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('locations', LocationsController::class);   
+        Route::resource('locations', AttendanceLocationsController::class);
 
         // Users
         Route::resource('users', UserController::class);
@@ -38,7 +38,7 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
         Route::get('schedules/history/{user}', [ScheduleController::class, 'history'])->name('schedules.history');
         Route::get('schedules/calendAar-grid-data', [ScheduleController::class, 'calendarGridData'])
             ->name('schedules.calendar-grid-data');
-        
+
         // Swap schedules routes
         Route::get('schedules/users-with-schedules', [ScheduleController::class, 'getUsersWithSchedules'])
             ->name('schedules.users-with-schedules');
@@ -46,7 +46,7 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
             ->name('schedules.user-schedules-for-swap');
         Route::post('schedules/swap', [ScheduleController::class, 'swapSchedules'])
             ->name('schedules.swap');
-        
+
         // Get existing schedules for user
         Route::get('schedules/user-existing-schedules', [ScheduleController::class, 'getUserExistingSchedules'])
             ->name('schedules.user-existing-schedules');

@@ -208,7 +208,7 @@ class AttendancesController extends Controller
 
     private function isWithinRadius($lat, $lng)
     {
-        $location = \App\Models\Location::first();
+        $location = \App\Models\AttendanceLocation::first();
 
         if (!$location) {
             // Handle jika belum ada lokasi
@@ -239,7 +239,7 @@ class AttendancesController extends Controller
         $request->validate([
             'schedule_id' => 'required|exists:schedules,id',
         ]);
-        
+
         $schedule = Schedules::find($request->schedule_id);
         $user = Auth::user();
 
