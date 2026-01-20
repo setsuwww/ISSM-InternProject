@@ -7,8 +7,10 @@ use App\Models\Jabatans;
 
 class Fungsis extends Model
 {
+    protected $table = 'fungsis';
+
     protected $fillable = [
-        'jabatan',
+        'fungsi',
         'is_active',
     ];
 

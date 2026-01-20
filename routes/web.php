@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\AttendanceLocationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\FungsisController;
 use App\Http\Controllers\Admin\ShiftController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\PermissionController as AdminPermissionController;
@@ -30,6 +32,9 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
         Route::delete('users/bulk-delete', [UserController::class, 'bulkDelete'])->name('users.bulkDelete');
         Route::get('users/export/excel', [UserController::class, 'exportExcel'])->name('users.exportExcel');
         Route::get('users/export/pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
+
+        Route::resource('employees', EmployeeController::class);
+        Route::resource('fungsis', FungsisController::class);
 
         // Shifts
         Route::resource('shifts', ShiftController::class);
