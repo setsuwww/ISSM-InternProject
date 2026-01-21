@@ -58,10 +58,10 @@
         <a href="{{ route('admin.fungsis.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
           Fungsis
         </a>
-        <a href="{{ route('admin.fungsis.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
+        <a href="{{ route('admin.jabatans.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
           Jabatans
         </a>
-        <a href="{{ route('admin.fungsis.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
+        <a href="{{ route('admin.roles.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
           Roles
         </a>
       </div>
