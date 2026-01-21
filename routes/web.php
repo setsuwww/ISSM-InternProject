@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\FungsisController;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\JabatansController;
 use App\Http\Controllers\Admin\ShiftController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\PermissionController as AdminPermissionController;
@@ -35,6 +37,8 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
 
         Route::resource('employees', EmployeeController::class);
         Route::resource('fungsis', FungsisController::class);
+        Route::resource('roles', RolesController::class);
+        Route::resource('jabatans', JabatansController::class);
 
         // Shifts
         Route::resource('shifts', ShiftController::class);
