@@ -121,7 +121,7 @@
         <a href="{{ route('admin.attendances.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
           Manage Attendances
         </a>
-        <a href="{{ route('admin.locations.create') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
+        <a href="{{ route('admin.attendace-locations.create') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
           Locations
         </a>
       </div>
