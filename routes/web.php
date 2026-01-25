@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\AttendanceLocationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\EmployeeHistoryController;
 use App\Http\Controllers\Admin\FungsisController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\JabatansController;
@@ -36,6 +36,7 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
         Route::get('users/export/pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
 
         Route::resource('employees', EmployeeController::class);
+        Route::resource('employee-history', EmployeeHistoryController::class);
         Route::resource('fungsis', FungsisController::class);
         Route::resource('roles', RolesController::class);
         Route::resource('jabatans', JabatansController::class);
