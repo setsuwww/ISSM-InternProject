@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\EmployeeHistory;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,12 @@ class EmployeeHistoryController extends Controller
     public function index()
     {
         $items = EmployeeHistory::latest()->paginate(10);
-        return view('employee_positions.index', compact('items'));
+        return view('admin.employee-history.index', compact('items'));
     }
 
     public function create()
     {
-        return view('employee_positions.create');
+        return view('admin.employee-history.create');
     }
 
     public function store(Request $request)
@@ -34,18 +35,18 @@ class EmployeeHistoryController extends Controller
         EmployeeHistory::create($validated);
 
         return redirect()
-            ->route('employee-positions.index')
+            ->route('admin.employee-history.index')
             ->with('success', 'Data berhasil ditambahkan');
     }
 
     public function show(EmployeeHistory $employeePosition)
     {
-        return view('employee_positions.show', compact('employeePosition'));
+        return view('admin.employee-history.show', compact('employeePosition'));
     }
 
     public function edit(EmployeeHistory $employeePosition)
     {
-        return view('employee_positions.edit', compact('employeePosition'));
+        return view('admin.employee-history.edit', compact('employeePosition'));
     }
 
     public function update(Request $request, EmployeeHistory $employeePosition)
@@ -64,7 +65,7 @@ class EmployeeHistoryController extends Controller
         $employeePosition->update($validated);
 
         return redirect()
-            ->route('employee-positions.index')
+            ->route('admin.employee-history.index')
             ->with('success', 'Data berhasil diperbarui');
     }
 
@@ -73,7 +74,7 @@ class EmployeeHistoryController extends Controller
         $employeePosition->delete();
 
         return redirect()
-            ->route('employee-positions.index')
+            ->route('admin.employee-history.index')
             ->with('success', 'Data berhasil dihapus');
     }
 }

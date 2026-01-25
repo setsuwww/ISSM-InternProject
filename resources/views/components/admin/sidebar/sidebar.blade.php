@@ -55,7 +55,7 @@
         <a href="{{ route('admin.employees.create') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
           Add Employee
         </a>
-        <a href="{{ route('admin.employees.history') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
+        <a href="{{ route('admin.employee-history.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
           Employee History
         </a>
         <a href="{{ route('admin.fungsis.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">
