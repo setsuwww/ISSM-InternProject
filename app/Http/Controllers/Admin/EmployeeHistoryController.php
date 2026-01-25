@@ -4,6 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\EmployeeHistory;
+
+use App\Models\Employee;
+use App\Models\Roles;
+use App\Models\Locations;
+use App\Models\Jabatans;
+use App\Models\Fungsis;
+
 use Illuminate\Http\Request;
 
 class EmployeeHistoryController extends Controller
@@ -16,20 +23,20 @@ class EmployeeHistoryController extends Controller
 
     public function create()
     {
-        return view('admin.employee-history.create');
+        return view('admin.employee-history.create', $this->formData());
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'employee_nik' => 'required|string|max:255',
-            'roles_id' => 'required|string|max:255',
-            'locations_id' => 'required|string|max:255',
-            'jabatans_id' => 'required|string|max:255',
-            'fungsis_id' => 'required|string|max:255',
-            'tanggal_mulai_efektif' => 'required|string|max:25',
-            'tanggal_akhir_efektif' => 'nullable|string|max:25',
-            'current_flag' => 'required|boolean',
+            'employee_id' => 'required|exists:employees,id',
+            'role_id' => 'required|exists:roles,id',
+            'location_id' => 'required|exists:locations,id',
+            'jabatan_id' => 'required|exists:jabatans,id',
+            'fungsi_id' => 'required|exists:fungsis,id',
+            'tanggal_mulai_efektif' => 'required|date',
+            'tanggal_akhir_efektif' => 'nullable|date',
+            'current_flag' => 'boolean',
         ]);
 
         EmployeeHistory::create($validated);
@@ -39,42 +46,59 @@ class EmployeeHistoryController extends Controller
             ->with('success', 'Data berhasil ditambahkan');
     }
 
-    public function show(EmployeeHistory $employeePosition)
+    public function show(EmployeeHistory $employeeHistory)
     {
-        return view('admin.employee-history.show', compact('employeePosition'));
+        return view('admin.employee-history.show', compact('employeeHistory'));
     }
 
-    public function edit(EmployeeHistory $employeePosition)
+    public function edit(EmployeeHistory $employeeHistory)
     {
-        return view('admin.employee-history.edit', compact('employeePosition'));
+        return view(
+            'admin.employee-history.form',
+            array_merge(
+                $this->formData(),
+                compact('employeeHistory')
+            )
+        );
     }
 
-    public function update(Request $request, EmployeeHistory $employeePosition)
+    public function update(Request $request, EmployeeHistory $employeeHistory)
     {
         $validated = $request->validate([
-            'employee_nik' => 'required|string|max:255',
-            'roles_id' => 'required|string|max:255',
-            'locations_id' => 'required|string|max:255',
-            'jabatans_id' => 'required|string|max:255',
-            'fungsis_id' => 'required|string|max:255',
-            'tanggal_mulai_efektif' => 'required|string|max:25',
-            'tanggal_akhir_efektif' => 'nullable|string|max:25',
-            'current_flag' => 'required|boolean',
+            'employee_id' => 'required|exists:employees,id',
+            'role_id' => 'required|exists:roles,id',
+            'location_id' => 'required|exists:locations,id',
+            'jabatan_id' => 'required|exists:jabatans,id',
+            'fungsi_id' => 'required|exists:fungsis,id',
+            'tanggal_mulai_efektif' => 'required|date',
+            'tanggal_akhir_efektif' => 'nullable|date',
+            'current_flag' => 'boolean',
         ]);
 
-        $employeePosition->update($validated);
+        $employeeHistory->update($validated);
 
         return redirect()
             ->route('admin.employee-history.index')
             ->with('success', 'Data berhasil diperbarui');
     }
 
-    public function destroy(EmployeeHistory $employeePosition)
+    public function destroy(EmployeeHistory $employeeHistory)
     {
-        $employeePosition->delete();
+        $employeeHistory->delete();
 
         return redirect()
             ->route('admin.employee-history.index')
             ->with('success', 'Data berhasil dihapus');
+    }
+
+    private function formData(): array
+    {
+        return [
+            'employees' => Employee::select('id', 'nik', 'nama')->get(),
+            'roles' => Roles::select('id', 'role')->get(),
+            'locations' => Locations::select('id', 'location')->get(),
+            'jabatans' => Jabatans::select('id', 'jabatan')->get(),
+            'fungsis' => Fungsis::select('id', 'fungsi')->get(),
+        ];
     }
 }
