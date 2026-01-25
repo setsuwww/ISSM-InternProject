@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\EmployeeHistory;
 
 use App\Models\Employee;
-use App\Models\Roles;
-use App\Models\Locations;
+use App\Models\Role;
+use App\Models\Location;
 use App\Models\Jabatans;
-use App\Models\Fungsis;
+use App\Models\Fungsi;
 
 use Illuminate\Http\Request;
 

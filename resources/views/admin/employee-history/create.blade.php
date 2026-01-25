@@ -27,7 +27,7 @@
               <option value="">Pilih employee</option>
               @foreach ($employees as $employee)
                 <option value="{{ $employee->id }}" @selected(old('employee_id', $employeeHistory->employee_id ?? '') == $employee->id)>
-                  {{ $employee->nik }} — {{ $employee->name }}
+                  {{ $employee->nik }} — {{ $employee->nama }}
                 </option>
               @endforeach
             </select>
@@ -42,7 +42,7 @@
               <option value="">Pilih role</option>
               @foreach ($roles as $role)
                 <option value="{{ $role->id }}" @selected(old('role_id', $employeeHistory->role_id ?? '') == $role->id)>
-                  {{ $role->name }}
+                  {{ $role->role }}
                 </option>
               @endforeach
             </select>
@@ -57,7 +57,7 @@
               <option value="">Pilih lokasi</option>
               @foreach ($locations as $location)
                 <option value="{{ $location->id }}" @selected(old('location_id', $employeeHistory->location_id ?? '') == $location->id)>
-                  {{ $location->name }}
+                  {{ $location->location }}
                 </option>
               @endforeach
             </select>
@@ -72,7 +72,7 @@
               <option value="">Pilih jabatan</option>
               @foreach ($jabatans as $jabatan)
                 <option value="{{ $jabatan->id }}" @selected(old('jabatan_id', $employeeHistory->jabatan_id ?? '') == $jabatan->id)>
-                  {{ $jabatan->name }}
+                  {{ $jabatan->jabatan }}
                 </option>
               @endforeach
             </select>
@@ -87,7 +87,7 @@
               <option value="">Pilih fungsi</option>
               @foreach ($fungsis as $fungsi)
                 <option value="{{ $fungsi->id }}" @selected(old('fungsi_id', $employeeHistory->fungsi_id ?? '') == $fungsi->id)>
-                  {{ $fungsi->name }}
+                  {{ $fungsi->fungsi }}
                 </option>
               @endforeach
             </select>

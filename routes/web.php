@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContentManagementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AttendanceLocationsController;
 use App\Http\Controllers\AuthController;
@@ -37,9 +38,30 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
 
         Route::resource('employees', EmployeeController::class);
         Route::resource('employee-history', EmployeeHistoryController::class);
-        Route::resource('fungsis', FungsisController::class);
-        Route::resource('roles', RolesController::class);
-        Route::resource('jabatans', JabatansController::class);
+
+        Route::get('/management', [ContentManagementController::class, 'index'])
+            ->name('management.index');
+
+        Route::post('/management/roles', [ContentManagementController::class, 'storeRole']);
+        Route::put('/management/roles/{role}', [ContentManagementController::class, 'updateRole']);
+        Route::delete('/management/roles/{role}', [ContentManagementController::class, 'destroyRole']);
+
+        Route::post('/management/jabatans', [ContentManagementController::class, 'storeJabatan']);
+        Route::put('/management/jabatans/{jabatan}', [ContentManagementController::class, 'updateJabatan']);
+        Route::delete('/management/jabatans/{jabatan}', [ContentManagementController::class, 'destroyJabatan']);
+
+        Route::post('/management/fungsis', [ContentManagementController::class, 'storeFungsi']);
+        Route::put('/management/fungsis/{fungsi}', [ContentManagementController::class, 'updateFungsi']);
+        Route::delete('/management/fungsis/{fungsi}', [ContentManagementController::class, 'destroyFungsi']);
+
+        Route::post('/management/locations', [ContentManagementController::class, 'storeLocation']);
+        Route::put('/management/locations/{location}', [ContentManagementController::class, 'updateLocation']);
+        Route::delete('/management/locations/{location}', [ContentManagementController::class, 'destroyLocation']);
+
+        Route::post(
+            '/management/jabatans/{jabatan}/fungsis',
+            [ContentManagementController::class, 'updateJabatanFungsi']
+        );
 
         // Shifts
         Route::resource('shifts', ShiftController::class);

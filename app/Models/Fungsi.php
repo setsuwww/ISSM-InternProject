@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Jabatans;
+use App\Models\Jabatan;
 
-class Fungsis extends Model
+class Fungsi extends Model
 {
     protected $table = 'fungsis';
 
@@ -14,8 +14,8 @@ class Fungsis extends Model
         'is_active',
     ];
 
-    public function jabatans()
+    public function fungsis()
     {
-        return $this->belongsToMany(Jabatans::class, 'jabatan_fungsi');
+        return $this->belongsToMany(Fungsi::class, 'jabatan_fungsi');
     }
 }

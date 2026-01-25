@@ -12,9 +12,16 @@ return new class extends Migration {
     {
         Schema::create('jabatan_fungsi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jabatan_id')->constrained('jabatans')->onDelete('cascade');
-            $table->foreignId('fungsi_id')->constrained('fungsis')->onDelete('cascade');
-            $table->timestamps();
+
+            $table->foreignId('jabatan_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->foreignId('fungsi_id')
+                ->unique()
+                ->constrained()
+                ->cascadeOnDelete();
+
         });
     }
 
