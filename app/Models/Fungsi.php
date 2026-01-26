@@ -9,13 +9,10 @@ class Fungsi extends Model
 {
     protected $table = 'fungsis';
 
-    protected $fillable = [
-        'fungsi',
-        'is_active',
-    ];
+    protected $fillable = ['fungsi', 'is_active'];
 
-    public function fungsis()
+    public function jabatans()
     {
-        return $this->belongsToMany(Fungsi::class, 'jabatan_fungsi');
+        return $this->hasMany(Jabatan::class);
     }
 }

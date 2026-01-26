@@ -1,15 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\ContentManagementController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AttendanceLocationsController;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\EmployeeHistoryController;
-use App\Http\Controllers\Admin\FungsisController;
-use App\Http\Controllers\Admin\RolesController;
-use App\Http\Controllers\Admin\JabatansController;
+use App\Http\Controllers\Admin\AttendanceLocationsController;
+
 use App\Http\Controllers\Admin\ShiftController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\PermissionController as AdminPermissionController;
@@ -21,6 +19,12 @@ use App\Http\Controllers\Users\AttendancesController as UsersAttendanceControlle
 use App\Http\Controllers\Users\PermissionController as UsersPermissionController;
 use App\Http\Controllers\Users\CalendarController;
 use App\Http\Controllers\DashboardRedirectController;
+
+use App\Http\Controllers\Admin\ManagementController;
+use App\Http\Controllers\Admin\Management\RoleController;
+use App\Http\Controllers\Admin\Management\JabatanController;
+use App\Http\Controllers\Admin\Management\FungsiController;
+use App\Http\Controllers\Admin\Management\LocationController;
 
 // ======= ADMIN =======
 Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
@@ -39,29 +43,52 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
         Route::resource('employees', EmployeeController::class);
         Route::resource('employee-history', EmployeeHistoryController::class);
 
-        Route::get('/management', [ContentManagementController::class, 'index'])
-            ->name('management.index');
+        Route::prefix('management')->name('management.')->group(function () {
 
-        Route::post('/management/roles', [ContentManagementController::class, 'storeRole']);
-        Route::put('/management/roles/{role}', [ContentManagementController::class, 'updateRole']);
-        Route::delete('/management/roles/{role}', [ContentManagementController::class, 'destroyRole']);
+            // INDEX
+            Route::get('/', [ManagementController::class, 'index'])
+                ->name('index');
 
-        Route::post('/management/jabatans', [ContentManagementController::class, 'storeJabatan']);
-        Route::put('/management/jabatans/{jabatan}', [ContentManagementController::class, 'updateJabatan']);
-        Route::delete('/management/jabatans/{jabatan}', [ContentManagementController::class, 'destroyJabatan']);
+            // ROLES
+            Route::post('/roles', [RoleController::class, 'store'])
+                ->name('roles.store');
+            Route::put('/roles/{role}', [RoleController::class, 'update'])
+                ->name('roles.update');
+            Route::put('/roles/bulk-update', [RoleController::class, 'bulkUpdate'])
+                ->name('roles.bulkUpdate');
+            Route::delete('/roles/{role}', [RoleController::class, 'destroy'])
+                ->name('roles.destroy');
 
-        Route::post('/management/fungsis', [ContentManagementController::class, 'storeFungsi']);
-        Route::put('/management/fungsis/{fungsi}', [ContentManagementController::class, 'updateFungsi']);
-        Route::delete('/management/fungsis/{fungsi}', [ContentManagementController::class, 'destroyFungsi']);
+            // JABATANS
+            Route::post('/jabatans', [JabatanController::class, 'store'])
+                ->name('jabatans.store');
+            Route::put('/jabatans/{jabatan}', [JabatanController::class, 'update'])
+                ->name('jabatans.update');
+            Route::put('/jabatans/bulk-update', [JabatanController::class, 'bulkUpdate'])
+                ->name('jabatans.bulkUpdate');
+            Route::delete('/jabatans/{jabatan}', [JabatanController::class, 'destroy'])
+                ->name('jabatans.destroy');
 
-        Route::post('/management/locations', [ContentManagementController::class, 'storeLocation']);
-        Route::put('/management/locations/{location}', [ContentManagementController::class, 'updateLocation']);
-        Route::delete('/management/locations/{location}', [ContentManagementController::class, 'destroyLocation']);
+            // FUNGSI
+            Route::post('/fungsis', [FungsiController::class, 'store'])
+                ->name('fungsis.store');
+            Route::put('/fungsis/{fungsi}', [FungsiController::class, 'update'])
+                ->name('fungsis.update');
+            Route::put('/fungsis/bulk-update', [FungsiController::class, 'bulkUpdate'])
+                ->name('fungsis.bulkUpdate');
+            Route::delete('/fungsis/{fungsi}', [FungsiController::class, 'destroy'])
+                ->name('fungsis.destroy');
 
-        Route::post(
-            '/management/jabatans/{jabatan}/fungsis',
-            [ContentManagementController::class, 'updateJabatanFungsi']
-        );
+            // LOCATION
+            Route::post('/locations', [LocationController::class, 'store'])
+                ->name('locations.store');
+            Route::put('/locations/{location}', [LocationController::class, 'update'])
+                ->name('locations.update');
+            Route::put('/locations/bulk-update', [LocationController::class, 'bulkUpdate'])
+                ->name('locations.bulkUpdate');
+            Route::delete('/locations/{location}', [LocationController::class, 'destroy'])
+                ->name('locations.destroy');
+        });
 
         // Shifts
         Route::resource('shifts', ShiftController::class);

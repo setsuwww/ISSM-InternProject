@@ -14,6 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->string('jabatan');
             $table->boolean('is_active')->default(true);
+            $table->foreignId('fungsi_id')
+                ->constrained('fungsis')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
