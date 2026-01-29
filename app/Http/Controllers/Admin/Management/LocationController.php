@@ -24,7 +24,7 @@ class LocationController extends Controller
             'location' => $request->location,
         ]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'location']);
     }
 
     public function update(Location $location, Request $request)
@@ -37,7 +37,7 @@ class LocationController extends Controller
             'location' => $request->location,
         ]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'location']);
     }
 
     public function bulkUpdate(Request $request)
@@ -55,12 +55,13 @@ class LocationController extends Controller
                 ]);
         }
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'location']);
     }
 
     public function destroy(Location $location)
     {
         $location->update(['is_active' => false]);
-        return back();
+
+        return redirect()->route('admin.management.index', ['tab' => 'location']);
     }
 }
