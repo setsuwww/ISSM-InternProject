@@ -1,51 +1,49 @@
-<header class="sticky top-0 z-40 border-b bg-white">
-  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-
-    {{-- LEFT --}}
-    <div>
-      <h1 class="text-lg font-semibold text-gray-900">
-        {{ $title ?? 'Dashboard' }}
-      </h1>
-      <p class="text-sm text-gray-500">
-        {{ $subtitle ?? 'Welcome back' }}
-      </p>
+<header class="h-[61px] bg-white border-b flex items-center justify-between px-6">
+  <div class="flex items-center gap-4">
+    <div class="text-sm text-gray-500">
+      Admin Panel
     </div>
+  </div>
 
-    {{-- RIGHT --}}
-    <div class="relative">
-      <button x-data="{ open: false }" @click="open = !open" @click.outside="open = false"
-        class="flex items-center gap-3 rounded-lg border px-3 py-2 transition hover:bg-gray-50">
-        <img src="{{ auth()->user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) }}"
-          alt="Avatar" class="h-8 w-8 rounded-full object-cover" />
+  {{-- RIGHT --}}
+  <div x-data="{ open: false }" class="relative">
+    <button @click="open = !open" @click.outside="open = false"
+      class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition">
+      <div class="w-8 h-8 rounded-full bg-sky-600 text-white flex items-center justify-center text-sm font-semibold">
+        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+      </div>
 
-        <div class="hidden text-left sm:block">
-          <p class="text-sm font-medium text-gray-900">
-            {{ auth()->user()->name }}
-          </p>
-          <p class="text-xs text-gray-500">
-            {{ auth()->user()->role->name ?? 'User' }}
-          </p>
-        </div>
+      <div class="text-left hidden sm:block">
+        <div class="text-sm font-medium">{{ auth()->user()->name }}</div>
+        <div class="text-xs text-gray-400">{{ auth()->user()->akses_role }}</div>
+      </div>
 
-        <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
+      <i data-lucide="chevron-down" class="w-4 h-4"></i>
+    </button>
 
-        {{-- DROPDOWN --}}
-        <div x-show="open" x-transition class="absolute right-0 top-12 w-48 rounded-xl border bg-white shadow-sm">
-          <a href="/edit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-            Profile
-          </a>
+    {{-- DROPDOWN --}}
+    <div x-show="open" x-transition
+      class="absolute right-0 mt-2 w-56 bg-white border rounded-xl shadow-lg overflow-hidden z-50">
+      <a href="{{ route('admin.activity-logs.index') }}"
+        class="flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-50">
+        <i data-lucide="activity" class="w-4 h-4"></i>
+        Activity Logs
+      </a>
 
-          <form method="POST" action="/logout">
-            @csrf
-            <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50">
-              Logout
-            </button>
-          </form>
-        </div>
-      </button>
+      <a href="{{ route('admin.security.index') }}" class="flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-50">
+        <i data-lucide="shield" class="w-4 h-4"></i>
+        Security
+      </a>
+
+      <div class="border-t my-1"></div>
+
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+          Logout
+        </button>
+      </form>
     </div>
-
   </div>
 </header>

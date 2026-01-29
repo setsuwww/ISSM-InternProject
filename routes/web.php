@@ -82,10 +82,10 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
             // LOCATION
             Route::post('/locations', [LocationController::class, 'store'])
                 ->name('locations.store');
+            Route::post('/locations/bulk-update', [LocationController::class, 'bulkUpdate'])
+                ->name('locations.bulkUpdate');
             Route::put('/locations/{location}', [LocationController::class, 'update'])
                 ->name('locations.update');
-            Route::put('/locations/bulk-update', [LocationController::class, 'bulkUpdate'])
-                ->name('locations.bulkUpdate');
             Route::delete('/locations/{location}', [LocationController::class, 'destroy'])
                 ->name('locations.destroy');
         });

@@ -1,5 +1,12 @@
 @php
-  $tab = request('tab', 'roles');
+  $tab = request()->get('tab', 'role');
+
+  $tabs = [
+    'role'     => 'Roles',
+    'jabatan'  => 'Jabatans',
+    'fungsi'   => 'Fungsis',
+    'location' => 'Locations',
+  ];
 @endphp
 
 @extends('layouts.admin')
@@ -11,25 +18,17 @@
 
   {{-- TAB HEADER --}}
   <div class="flex gap-6 border-b mb-6 text-sm font-medium">
-    <a href="{{ route('admin.management.index', ['tab' => 'role']) }}"
-       class="pb-2 {{ $tab === 'roles' ? 'border-b-2 border-black' : 'text-gray-400' }}">
-      Roles
-    </a>
-
-    <a href="{{ route('admin.management.index', ['tab' => 'jabatan']) }}"
-       class="pb-2 {{ $tab === 'jabatans' ? 'border-b-2 border-black' : 'text-gray-400' }}">
-      Jabatans
-    </a>
-
-    <a href="{{ route('admin.management.index', ['tab' => 'fungsi']) }}"
-       class="pb-2 {{ $tab === 'fungsis' ? 'border-b-2 border-black' : 'text-gray-400' }}">
-      Fungsis
-    </a>
-
-    <a href="{{ route('admin.management.index', ['tab' => 'location']) }}"
-       class="pb-2 {{ $tab === 'locations' ? 'border-b-2 border-black' : 'text-gray-400' }}">
-      Locations
-    </a>
+    @foreach ($tabs as $key => $label)
+      <a
+        href="{{ route('admin.management.index', ['tab' => $key]) }}"
+        class="pb-2 transition-all
+          {{ $tab === $key
+              ? 'border-b-2 border-black text-black'
+              : 'text-gray-400 hover:text-black hover:border-b-2 hover:border-gray-300'
+          }}">
+        {{ $label }}
+      </a>
+    @endforeach
   </div>
 
   {{-- TAB CONTENT --}}
@@ -49,6 +48,9 @@
     @case('location')
       @include('admin.management.tabs.location')
       @break
+
+    @default
+      @include('admin.management.tabs.role')
   @endswitch
 
 </div>

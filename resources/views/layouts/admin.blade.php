@@ -182,12 +182,19 @@
     </style>
 </head>
 
-<body class="flex">
+<body class="flex h-screen bg-gray-100">
+
     <x-admin.sidebar />
 
-    <main class="flex-1">
-        @yield('content')
-    </main>
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+        <x-admin.header />
+
+        <main class="flex-1 overflow-y-auto p-6">
+            @yield('content')
+        </main>
+
+    </div>
 
 
     <script>
@@ -206,49 +213,6 @@
                 }
             }, 100);
         });
-
-        function initializeLiveClock() {
-            function updateClock() {
-                const now = new Date();
-
-                const timeOptions = {
-                    timeZone: 'Asia/Jakarta',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false
-                };
-
-                const dateOptions = {
-                    timeZone: 'Asia/Jakarta',
-                    weekday: 'short',
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric'
-                };
-
-                const timeString = now.toLocaleTimeString('id-ID', timeOptions);
-                const dateString = now.toLocaleDateString('id-ID', dateOptions);
-
-                const timeElement = document.getElementById('live-time');
-                const dateElement = document.getElementById('live-date');
-
-                if (timeElement) {
-                    timeElement.textContent = timeString;
-                    timeElement.style.transform = 'scale(1.05)';
-                    setTimeout(() => {
-                        timeElement.style.transform = 'scale(1)';
-                    }, 150);
-                }
-
-                if (dateElement) {
-                    dateElement.textContent = dateString;
-                }
-            }
-
-            updateClock();
-            setInterval(updateClock, 1000);
-        }
 
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
