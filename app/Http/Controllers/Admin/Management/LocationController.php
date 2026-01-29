@@ -6,12 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
-namespace App\Http\Controllers\Admin\Management;
-
-use App\Http\Controllers\Controller;
-use App\Models\Location;
-use Illuminate\Http\Request;
-
 class LocationController extends Controller
 {
     public function store(Request $request)
