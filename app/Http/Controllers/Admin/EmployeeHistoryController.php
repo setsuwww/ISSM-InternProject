@@ -8,7 +8,7 @@ use App\Models\EmployeeHistory;
 use App\Models\Employee;
 use App\Models\Role;
 use App\Models\Location;
-use App\Models\Jabatans;
+use App\Models\Jabatan;
 use App\Models\Fungsi;
 
 use Illuminate\Http\Request;
@@ -95,10 +95,10 @@ class EmployeeHistoryController extends Controller
     {
         return [
             'employees' => Employee::select('id', 'nik', 'nama')->get(),
-            'roles' => Roles::select('id', 'role')->get(),
-            'locations' => Locations::select('id', 'location')->get(),
-            'jabatans' => Jabatans::select('id', 'jabatan')->get(),
-            'fungsis' => Fungsis::select('id', 'fungsi')->get(),
+            'roles' => Role::select('id', 'role')->get(),
+            'locations' => Location::select('id', 'location')->get(),
+            'jabatans' => Jabatan::select('id', 'jabatan')->get(),
+            'fungsis' => Fungsi::select('id', 'fungsi')->get(),
         ];
     }
 }
