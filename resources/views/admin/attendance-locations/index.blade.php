@@ -74,11 +74,11 @@
                                         <td class="px-6 py-4 text-sm text-gray-600">{{ $location->radius }}</td>
                                         <td class="px-6 py-4 text-sm">
                                             <div class="flex space-x-2">
-                                                <a href="{{ route('admin.attendace-locations.edit', $location) }}"
+                                                <a href="{{ route('admin.attendance-locations.edit', $location) }}"
                                                     class="px-3 py-1.5 bg-sky-50 text-sky-600 text-sm font-medium rounded-lg hover:bg-sky-100 transition-colors duration-200">
                                                     Edit
                                                 </a>
-                                                <form action="{{ route('admin.attendace-locations.destroy', $location) }}"
+                                                <form action="{{ route('admin.attendance-locations.destroy', $location) }}"
                                                     method="POST"
                                                     onsubmit="return confirm('Yakin ingin menghapus lokasi ini?')">
                                                     @csrf

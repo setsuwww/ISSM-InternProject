@@ -11,7 +11,7 @@ class AttendanceLocationsController extends Controller
     public function index()
     {
         $locations = AttendanceLocation::all();
-        return view('admin.attendace-locations.index', compact('locations'));
+        return view('admin.attendance-locations.index', compact('locations'));
     }
 
     public function create()
@@ -30,12 +30,12 @@ class AttendanceLocationsController extends Controller
 
         AttendanceLocation::create($request->all());
 
-        return redirect()->route('admin.attendace-locations.index')->with('success', 'Lokasi berhasil ditambahkan.');
+        return redirect()->route('admin.attendance-locations.index')->with('success', 'Lokasi berhasil ditambahkan.');
     }
 
     public function edit(AttendanceLocation $location)
     {
-        return view('admin.attendace-locations.edit', compact('location'));
+        return view('admin.attendance-locations.edit', compact('location'));
     }
 
     public function update(Request $request, AttendanceLocation $location)
@@ -49,12 +49,12 @@ class AttendanceLocationsController extends Controller
 
         $location->update($request->all());
 
-        return redirect()->route('admin.attendace-locations.index')->with('success', 'Lokasi berhasil diupdate.');
+        return redirect()->route('admin.attendance-locations.index')->with('success', 'Lokasi berhasil diupdate.');
     }
 
     public function destroy(AttendanceLocation $location)
     {
         $location->delete();
-        return redirect()->route('admin.attendace-locations.index')->with('success', 'Lokasi berhasil dihapus.');
+        return redirect()->route('admin.attendance-locations.index')->with('success', 'Lokasi berhasil dihapus.');
     }
 }

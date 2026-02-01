@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="p-8">
-                    <form action="{{ route('admin.attendace-locations.store') }}" method="POST" class="space-y-6">
+                    <form action="{{ route('admin.attendance-locations.store') }}" method="POST" class="space-y-6">
                         @csrf
                         <div class="space-y-2">
                             <label for="name" class="block text-sm font-bold text-gray-800">
@@ -89,7 +89,7 @@
                                     Simpan Lokasi
                                 </span>
                             </button>
-                            <a href="{{ route('admin.attendace-locations.index') }}"
+                            <a href="{{ route('admin.attendance-locations.index') }}"
                                 class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-4 px-8 rounded-xl transition-all duration-200 text-center focus:outline-none focus:ring-4 focus:ring-gray-200 border-2 border-gray-200 hover:border-gray-300">
                                 <span class="flex items-center justify-center gap-2">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

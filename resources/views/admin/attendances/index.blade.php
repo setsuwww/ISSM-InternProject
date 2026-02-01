@@ -8,12 +8,12 @@
             <!-- Enhanced Header Section -->
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-sky-100 to-sky-200 rounded-xl flex items-center justify-center shadow-sm">
+                    <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center">
                         <i data-lucide="calendar-check" class="w-6 h-6 text-sky-700"></i>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold text-gray-700 tracking-tight">Manajemen Absensi</h1>
-                        <p class="text-gray-500 mt-1">{{ $todayFormated }} - Kelola data absensi harian</p>
+                        <h1 class="text-3xl font-bold text-gray-600 tracking-tight">Manajemen Absensi</h1>
+                        <p class="text-gray-400 mt-1">{{ $todayFormated }} - Kelola data absensi harian</p>
                     </div>
                 </div>
                 
@@ -61,18 +61,18 @@
                     icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-green-600 lucide lucide-check-circle-2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>'
                 />
                 <x-stats-card
-                    title="Telat"
-                    :count="$totalTelat"
-                    subtitle="Terlambat hari ini"
-                    bgColor="bg-gradient-to-br from-orange-100 to-orange-200"
-                    icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-orange-600 lucide lucide-clock-alert"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><path d="M12 2v4"/><path d="M12 18v4"/></svg>'
-                />
-                <x-stats-card
                     title="Izin"
                     :count="$totalIzin"
                     subtitle="Izin hari ini"
                     bgColor="bg-gradient-to-br from-yellow-100 to-yellow-200"
                     icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-yellow-600 lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+                />
+                <x-stats-card
+                    title="Telat"
+                    :count="$totalTelat"
+                    subtitle="Terlambat hari ini"
+                    bgColor="bg-gradient-to-br from-orange-100 to-orange-200"
+                    icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-orange-600 lucide lucide-clock-alert"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><path d="M12 2v4"/><path d="M12 18v4"/></svg>'
                 />
                 <x-stats-card
                     title="Alpha"
@@ -84,12 +84,12 @@
             </div>
 
             <!-- Enhanced Table Card -->
-            <div class="bg-white rounded-2xl border-2 border-sky-100 overflow-hidden shadow-xl">
-                <div class="px-8 py-6 border-b border-sky-100 bg-gradient-to-r from-sky-50 to-blue-50">
+            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+                <div class="px-8 py-6 border-b border-gray-200 bg-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h2 class="text-xl font-bold text-sky-900">Daftar Absensi Karyawan</h2>
-                            <p class="text-sky-700 mt-1">Data absensi untuk tanggal {{ $todayFormated }}</p>
+                            <h2 class="text-xl font-bold text-gray-600">Daftar Absensi Karyawan</h2>
+                            <p class="text-gray-400 mt-1">Data absensi untuk tanggal {{ $todayFormated }}</p>
                         </div>
                         <div class="flex items-center space-x-3">
                             <form method="GET" action="{{ route('admin.attendances.index') }}" class="flex items-center space-x-3">
@@ -127,58 +127,26 @@
                         <thead class="bg-gray-50 border-b-2 border-gray-200">
                             <tr>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-sky-600 mr-2">
-                                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                                            <circle cx="12" cy="7" r="4"/>
-                                        </svg>
                                         Nama Karyawan
-                                    </div>
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock text-sky-600 mr-2">
-                                            <circle cx="12" cy="12" r="10"/>
-                                            <polyline points="12 6 12 12 16 14"/>
-                                        </svg>
+                                    
                                         Shift
-                                    </div>
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in text-sky-600 mr-2">
-                                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                                            <polyline points="10 17 15 12 10 7"/>
-                                            <line x1="15" x2="3" y1="12" y2="12"/>
-                                        </svg>
                                         Check In
-                                    </div>
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out text-sky-600 mr-2">
-                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                                            <polyline points="16 17 21 12 16 7"/>
-                                            <line x1="21" x2="9" y1="12" y2="12"/>
-                                        </svg>
+                                    
                                         Check Out
-                                    </div>
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity text-sky-600 mr-2">
-                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-                                        </svg>
+                                    
                                         Status
-                                    </div>
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle text-sky-600 mr-2">
-                                            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
-                                        </svg>
+                                    
                                         Keterangan
-                                    </div>
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                                     Aksi

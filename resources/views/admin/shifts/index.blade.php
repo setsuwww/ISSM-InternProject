@@ -135,7 +135,7 @@
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                                         Durasi
                                 </th>
-                                <th class="px-8 py-4 text-right text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                                     Aksi
                                 </th>
                             </tr>
@@ -219,8 +219,8 @@
                                             {{ $duration }} jam
                                         </div>
                                     </td>
-                                    <td class="px-8 py-6 whitespace-nowrap text-right">
-                                        <div class="flex items-center justify-end space-x-3">
+                                    <td class="px-8 py-6 whitespace-nowrap text-left">
+                                        <div class="flex items-center justify-start space-x-3">
                                             <a href="{{ route('admin.shifts.edit', $shift->id) }}"
                                                 class="inline-flex items-center px-4 py-2 border border-gray-300 font-semibold text-sm rounded-lg">
                                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
