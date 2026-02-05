@@ -99,6 +99,13 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
+        // apus di is_active
+        // employee yg sudah di mapping tidak dimunculkan
+        // notifikasi kalau ada error form yang tidak terisi
+        // tanggal mulai efektif saja, tanggal akhir di akhir bulan
+        // import excel untuk scheduling system
+        // export excel
+        // request reset device, masukin nama device
 
         return redirect()
             ->route('admin.employees.index')
