@@ -107,6 +107,7 @@ class EmployeeController extends Controller
         // export excel
         // request reset device, masukin nama device
         // export absensi satu page / per user
+        // fitur fitur csm
 
         return redirect()
             ->route('admin.employees.index')
